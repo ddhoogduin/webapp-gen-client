@@ -44,7 +44,7 @@ const verifyDeleteList = (response, success, error) => {
     }
     return {type: success}
 }
-export const deleteList =  (entity, ids, success, error) => async (dispatch, getState) =>{
-    const response = await SascWebApi.delete(`/${entity}/${getState().activeClient.alias}/list`,data:});
-    return dispatch(verifyTogglePublishList(response, success, error));
-};
+// export const deleteList =  (entity, ids, success, error) => async (dispatch, getState) =>{
+//     const response = await SascWebApi.delete(`/${entity}/${getState().activeClient.alias}/list`,data:});
+//     return dispatch(verifyTogglePublishList(response, success, error));
+// };
