@@ -2,18 +2,18 @@ import SascWebApi from "../../apis/SascWeb";
 import _ from 'lodash'
 
 const verifyGetList = (response, success, error) =>{
-    if(response.data.success === false){
+    if(response.status === 200){
         return {
-            type: error
+            type: success,
+            payload: response.data
         }
     }
     return {
-        type: success,
-        payload: response.data.items
+        type: error
     }
 };
 export const getList = (entity, success, error) => async (dispatch, getState) =>{
-    const response = await SascWebApi.get(`/${entity}/${getState().activeClient.alias}/list`);
+    const response = await SascWebApi.get(`/clients/${getState().activeClient.id}/${entity}`);
     dispatch(verifyGetList(response, success, error));
 };
 

@@ -42,7 +42,7 @@ class OverviewClient extends Component {
                 return (rowIndex + 1);
             case 'link-detail':
                 return (
-                    <Link to={`/client/${this.props.client.alias}/${this.props.entity}/${item[this.props.pk]}`}>
+                    <Link to={`/${this.props.client.alias}/${this.props.entity}/${item[this.props.pk]}`}>
                         {item[attribute]}
                     </Link>
                 );

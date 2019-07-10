@@ -14,9 +14,9 @@ class DashboardOverview extends Component{
             (client, index) =>{
                 return(
                         <Card key={`client-item-${index}`}>
-                            <Image src={`http://localhost:5000/api/resource/${client.alias}/icons/thumb.jpg`} />
+                            <Image src={`http://localhost:5000/api/clients/${client.id}/files/thumb.jpg`} />
                             <Card.Content>
-                                <Card.Header><Link to={`client/${client.alias}`}>{client.name}</Link></Card.Header>
+                                <Card.Header><Link to={`/${client.alias}`}>{client.name}</Link></Card.Header>
                                 <Card.Meta>
                                     <span className='date'>Last updated {client.modified_at}</span>
                                 </Card.Meta>

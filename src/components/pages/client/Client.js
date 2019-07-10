@@ -24,7 +24,7 @@ class Client extends Component{
     renderMenuItems(){
         return this.props.menuItems.items.map(
             (item, index) =>(
-                <Link key={`mainMenuItem-${index}`} to={`/client/${this.props.client.alias}${item.action}`}>
+                <Link key={`mainMenuItem-${index}`} to={`/${this.props.client.alias}${item.action}`}>
                 <Menu.Item>
                     <Icon name={item.icon} />
                     {item.name}

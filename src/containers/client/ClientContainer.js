@@ -17,7 +17,7 @@ import ComponentFrameClient from "../../components/modules/client/ComponentFrame
 
 class ClientContainer extends Component{
 
-    clientAlias=this.props.match.params.alias;
+    clientAlias=this.props.match.params.clientAlias;
 
     renderRouteItem =  (component, {name, description}) =>{
         return (
@@ -37,17 +37,17 @@ class ClientContainer extends Component{
         return(
             <Router history={history}>
                 <Switch>
-                    <Route path="/client/:alias" exact
+                    <Route path="/:alias" exact
                            render={(props) => this.renderRouteItem(<HomeClientContainer{...props} />,
                                {name:'Home', description:'Client overview'}
                                )}
                     />
-                    <Route path="/client/:alias/forms" exact
+                    <Route path="/:alias/forms" exact
                            render={(props) => this.renderRouteItem(<OverviewFormClientContainer {...props} />,
                                {name:'Forms', description:'Overview of client forms'}
                            )}
                     />
-                    <Route path="/client/:alias/form/:formId" exact
+                    <Route path="/:alias/form/:formId" exact
                            render={(props) => this.renderRouteItem(<DetailFormClientContainer {...props} />,
                                {name:'Form', description:'Edit a client form'}
                            )}
@@ -56,10 +56,13 @@ class ClientContainer extends Component{
             </Router>
         )
     };
-    componentDidMount() {
+    componentWillMount() {
         this.props.setActiveClient(this.clientAlias);
-    }
+    };
     render(){
+        if(!this.props.client.id){
+            return null;
+        }
         return(
             <Client
                 client={this.props.client}

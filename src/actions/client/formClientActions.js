@@ -4,7 +4,7 @@ import {getList, putPublishedList} from './overviewClientActions'
 
 
 export const getFormList = () => {
-    return getList('form', form.FORM_LIST_SUCCESS, form.FORM_LIST_FAILED);
+    return getList('forms', form.FORM_LIST_SUCCESS, form.FORM_LIST_FAILED);
 };
 export const togglePublishFormList = (selection, value) => {
     return putPublishedList('form', selection, value,
@@ -23,9 +23,9 @@ const verifyGetForm = (response) => {
 };
 
 export const getForm = (id) => async (dispatch, getState) => {
-    const response = await SascWebApi.get(`/form/${getState().activeClient.alias}/${id}`);
+    const response = await SascWebApi.get(`/clients/${getState().activeClient.id}/forms/${id}`);
     dispatch(verifyGetForm(response));
-}
+};
 
 const verifyUploadForm = (response) => {
     if (response.data.success === false) {

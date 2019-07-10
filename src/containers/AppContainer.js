@@ -17,7 +17,7 @@ class AppContainer extends Component{
                 <Router history={history}>
                     <Switch>
                         <Route path="/" exact component={DashboardContainer}/>
-                        <Route path="/client/:alias"  component={ClientContainer}/>
+                        <Route path="/:clientAlias"  component={ClientContainer}/>
                     </Switch>
                 </Router>
                 );

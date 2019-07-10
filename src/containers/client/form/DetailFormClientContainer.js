@@ -53,7 +53,7 @@ class DetailFormClientContainer extends Component{
                 removeInput={this.removeInput}
                 generateInputOption={this.generateInputOption}
                 removeInputOption={this.removeInputOption}
-                initialValues={ this.props.activeFormClient}
+                initialValues={this.props.activeFormClient}
             />
         );
     }

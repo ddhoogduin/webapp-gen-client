@@ -3,37 +3,37 @@ import {client} from '../../constants/types'
 
 const verifyGetClients = (response) =>{
 
-    if(response.data.length <= 1){
+    if(response.status === 200){
         return {
-            type: client.CLIENT_LIST_FAILED
+            type: client.CLIENT_LIST_SUCCESS,
+            payload: response.data
         }
     }
     return {
-        type: client.CLIENT_LIST_SUCCESS,
-        payload: response.data.items
+        type: client.CLIENT_LIST_FAILED
     }
 };
 
 export const getClients = () => async (dispatch) => {
-    const response = await SascWebApi.get('/client/list');
+    const response = await SascWebApi.get('/clients');
     dispatch(verifyGetClients(response));
 };
 const verifyClientRequest = (response) =>{
-    if(response.data.success === false){
+    if(response.status === 200){
         return {
-            type: client.CLIENT_DEACTIVATE
+            type: client.CLIENT_ACTIVATE,
+            payload: response.data
         }
     }
     return {
-        type: client.CLIENT_ACTIVATE,
-        payload: response.data.item
+        type: client.CLIENT_DEACTIVATE
     }
 };
 
-export const setActiveClient = (requestedClient) => async (dispatch, getState) =>{
+export const setActiveClient = (requestedClientAlias) => async (dispatch, getState) =>{
 
-    if(requestedClient !== getState().activeClient.alias){
-        const response = await SascWebApi.get(`/client/${requestedClient}`);
+    if(requestedClientAlias !== getState().activeClient.clientAlias){
+        const response = await SascWebApi.get(`/clients/${requestedClientAlias}`);
         dispatch(verifyClientRequest(response));
     }
 }

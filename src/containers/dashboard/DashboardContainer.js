@@ -1,7 +1,7 @@
 import React, {Component} from 'react'
 import {connect} from "react-redux";
 import DashboardOverview from "../../components/pages/dashboard/DashboardOverview";
-import {getClients} from '../../actions/client/clientActions'
+import {getClients, setActiveClient} from '../../actions/client/clientActions'
 import _ from 'lodash'
 
 class DashboardContainer extends Component{
@@ -23,4 +23,4 @@ const mapStateToProps = (state) => {
         clients: _.values(state.listClient)
     }
 };
-export default connect(mapStateToProps, {getClients})(DashboardContainer);
+export default connect(mapStateToProps, {getClients, setActiveClient})(DashboardContainer);
