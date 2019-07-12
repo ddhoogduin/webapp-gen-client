@@ -1,7 +1,7 @@
 import React, {Component} from 'react'
 import PropTypes from 'prop-types';
 import _ from 'lodash'
-import OverviewClient from '../../components/pages/client/overview/OverviewClient'
+import OverviewClient from '../../components/pages/client/OverviewClient'
 import {overview} from "../../constants/types";
 
 import {setActiveOverview} from '../../actions/client/overviewClientActions'

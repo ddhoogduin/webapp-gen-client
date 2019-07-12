@@ -1,76 +1,51 @@
 import React, {Component, PureComponent} from 'react'
 import {connect} from "react-redux";
 
+import {getForm} from '../../../actions/client/formClientActions'
+import {getApiProtocolList} from '../../../actions/apiProtocolActions'
+import _ from "lodash";
+import DetailClientContainer from "../DetailClientContainer";
+import dataListToOptions from '../../../components/modules/dataListToOptions'
 
-import {addInput, getInputList, removeInput, addInputOption, removeInputOption} from '../../../actions/client/inputClientActions'
-import {getForm, uploadForm} from '../../../actions/client/formClientActions'
-import DetailFormClient from "../../../components/pages/client/detail/DetailFormClient";
-import {
-    getFormValues
-} from 'redux-form'
-
-class DetailFormClientContainer extends Component{
-
-    formId = this.props.match.params.formId;
-
-    handleSubmit = (formValues) =>{
-        this.props.uploadForm(formValues, this.formId)
-    };
-    removeInput = (index) =>{
-        this.props.removeInput(index)
-    };
-    generateInputOption = (inputId) =>{
-        const formValues = this.props.formValues;
-        this.props.addInputOption(
-            inputId,
-            formValues[`genOptionValue-${inputId}`],
-            formValues[`genOptionLabel-${inputId}`])
-    };
-    removeInputOption = (inputId, index) =>{
-        this.props.removeInputOption(inputId, index)
-    };
-    generateInput = () =>{
-        const formValues = this.props.formValues;
-        this.props.addInput({
-            type:formValues.genType,
-            name:formValues.genName,
-            label:formValues.genLabel,
-            parameter:formValues.genParameter}
-        )
-
-    };
-    componentWillMount() {
-        this.props.getForm(this.formId);
-        this.props.getInputList(this.formId);
+class DetailFormClientContainer extends Component {
+    entity = 'form';
+    pk = 'id';
+    pk_value = this.props.match.params.formId;
+    formConfig =
+        [
+            {
+                sectionTitle: 'Form',
+                fields: [
+                    {label: 'Published', name: 'published', type:'switch'},
+                    {label: 'Name', name: 'name', type: 'input'},
+                    {label: 'API Protocol', name: 'api_id', type: 'select',
+                        options: []},
+                    {label: 'Tool name as referenced in request url'}
+                ]
+            }
+        ];
+    componentDidMount() {
+        this.props.getForm(this.pk_value);
+        this.props.getApiProtocolList()
     }
-    render(){
+    render() {
         return (
-            <DetailFormClient
-                onSubmit={this.handleSubmit}
-                client={this.props.client}
-                generateInput={this.generateInput}
-                listInput={this.props.listInput}
-                removeInput={this.removeInput}
-                generateInputOption={this.generateInputOption}
-                removeInputOption={this.removeInputOption}
-                initialValues={this.props.activeFormClient}
+            <DetailClientContainer
+                entity={this.entity}
+                pk={this.pk}
+                pk_value={this.pk_value}
+                formConfig={this.formConfig}
+                detailData={this.props.formData}
             />
-        );
+        )
     }
 }
+
 const mapStateToProps = (state) => {
     return {
-        initialValues: state.activeFormClient,
-        client: state.activeClient,
-        activeFormClient: state.activeFormClient,
-        formValues: getFormValues('detailFormClient')(state),
-        listInput: state.listInput
+        formData: state.activeFormClient,
+        apiProtocolList: _.values(state.listApiProtocolClient),
+        client: state.activeClient
     }
 };
-export default connect(mapStateToProps, {addInput,
-    getForm,
-    getInputList,
-    uploadForm,
-    addInputOption,
-    removeInputOption,
-    removeInput})(DetailFormClientContainer);
+export default connect(mapStateToProps, {getForm, getApiProtocolList})(DetailFormClientContainer);

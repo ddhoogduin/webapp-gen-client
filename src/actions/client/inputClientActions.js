@@ -16,19 +16,24 @@ export const removeInput = (index) => {
     }
 }
 const verifyGetInputList = (response) =>{
-    if(response.data.success === false){
+    if(response.status === 200){
         return {
-            type: input.INPUT_LIST_FAILED
+            type: input.INPUT_LIST_SUCCESS,
+            payload: response.data
         }
     }
     return {
-        type: input.INPUT_LIST_SUCCESS,
-        payload: response.data.items
+        type: input.INPUT_LIST_FAILED
     }
 };
 
-export const getInputList = (formId) => async (dispatch, getState) =>{
+export const getClientFormInputList = (formId) => async (dispatch, getState) =>{
     const response = await SascWebApi.get(`clients/${getState().activeClient.id}/forms/${formId}/inputs`);
+    return dispatch(verifyGetInputList(response));
+}
+
+export const getClientInputList = () => async (dispatch, getState) =>{
+    const response = await SascWebApi.get(`clients/${getState().activeClient.id}/inputs`);
     return dispatch(verifyGetInputList(response));
 }
 

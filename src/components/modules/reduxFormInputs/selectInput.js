@@ -22,4 +22,3 @@ export default (input, label, meta, inputAttr) => {
         </Form.Field>
     )
 };
-

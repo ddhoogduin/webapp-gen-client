@@ -7,8 +7,8 @@ import {
 } from 'semantic-ui-react'
 
 import {Field, reduxForm, change} from "redux-form";
-import {textInput, sliderInput, selectInput} from "../../../helpers/redux-form-inputs/index";
-import { required} from "../../../../constants/formValidationRules";
+import {textInput, sliderInput, selectInput} from "../../modules/reduxFormInputs";
+import { required} from "../../../constants/formValidationRules";
 import _ from 'lodash'
 
 class DetailFormClient extends Component{

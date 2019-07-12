@@ -13,7 +13,8 @@ import {Transition} from 'semantic-ui-react'
 
 import {setActiveClient} from '../../actions/client/clientActions'
 import {unsetRedirect} from '../../actions/client/clientManagerActions'
-import ComponentFrameClient from "../../components/modules/client/ComponentFrameClient";
+import ClientComponentFrame from "../../components/modules/clientComponentFrame";
+import OverviewInputClientContainer from "./input/OverviewInputClientContainer";
 
 class ClientContainer extends Component{
 
@@ -22,13 +23,13 @@ class ClientContainer extends Component{
     renderRouteItem =  (component, {name, description}) =>{
         return (
 
-            <ComponentFrameClient
+            <ClientComponentFrame
                 name={name}
                 description={description}
                 breadCrumb={`${this.clientAlias} / ${name.toLowerCase()}`}
             >
                 {component}
-            </ComponentFrameClient>
+            </ClientComponentFrame>
         )
 
     };
@@ -50,6 +51,11 @@ class ClientContainer extends Component{
                     <Route path="/:alias/form/:formId" exact
                            render={(props) => this.renderRouteItem(<DetailFormClientContainer {...props} />,
                                {name:'Form', description:'Edit a client form'}
+                           )}
+                    />
+                    <Route path="/:alias/inputs" exact
+                           render={(props) => this.renderRouteItem(<OverviewInputClientContainer {...props} />,
+                               {name:'Inputs', description:'Overview of client inputs'}
                            )}
                     />
                 </Switch>

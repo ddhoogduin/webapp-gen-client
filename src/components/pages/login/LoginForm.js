@@ -1,7 +1,7 @@
 import React, {Component} from 'react'
 import {Container, Grid, Segment, Form, Button, Transition, Icon, Input} from 'semantic-ui-react'
 import {Field, reduxForm, change, untouch} from 'redux-form'
-import {textInput, checkBoxInput} from '../../helpers/redux-form-inputs'
+import {textInput, checkBoxInput} from '../../modules/reduxFormInputs'
 import {required, minValue5, email} from '../../../constants/formValidationRules'
 
 import '../../../assets/main.css'

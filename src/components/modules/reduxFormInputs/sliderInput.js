@@ -12,7 +12,7 @@ export default (input, label, meta, inputAttr) =>{
     return(
         <Form.Field>
             <label>{label}</label>
-            <Checkbox slider {...input}  {...inputAttr}  value={0} />
+            <Checkbox toggle  {...input}  {...inputAttr}  value={0} />
             {renderError(meta)}
         </Form.Field>
     )

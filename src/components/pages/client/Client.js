@@ -20,17 +20,33 @@ import '../../../assets/main.css'
 import {Link} from "react-router-dom";
 
 class Client extends Component{
-
-    renderMenuItems(){
-        return this.props.menuItems.items.map(
-            (item, index) =>(
-                <Link key={`mainMenuItem-${index}`} to={`/${this.props.client.alias}${item.action}`}>
-                <Menu.Item>
+    renderMenuItem = (index, item) => {
+        return (
+                <Menu.Item key={`mainMenuItem-${index}`} as={Link}  to={`/${this.props.client.alias}${item.action}`} >
                     <Icon name={item.icon} />
                     {item.name}
                 </Menu.Item>
-                </Link>
-            )
+        )
+    }
+    renderSubMenu = (index, item) => {
+        return(
+            <Menu.Item key={`mainSubMenuItem-${index}`}>
+                <Icon name={item.icon} />
+                {item.name}
+                <Menu.Menu>
+                    {this.renderMenuItems(item.items)}
+                </Menu.Menu>
+            </Menu.Item>
+        )
+    };
+    renderMenuItems(menuItems){
+        return menuItems.map(
+            (item, index) =>{
+                if(item.subMenu == true){
+                    return this.renderSubMenu(index, item)
+                }
+                return this.renderMenuItem(index, item)
+            }
         )
     }
     renderMenu(){
@@ -52,7 +68,7 @@ class Client extends Component{
                         </Header>
                     </div>
                     <Menu fluid vertical inverted>
-                        {this.renderMenuItems()}
+                        {this.renderMenuItems(this.props.menuItems.items)}
                     </Menu>
                 </Sidebar>
                 <Sidebar.Pusher className={'mainContent-client'}>

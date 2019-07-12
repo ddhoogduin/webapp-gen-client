@@ -1,5 +1,4 @@
-import React, {Component, PureComponent} from 'react'
-import {connect} from "react-redux";
+import React, {Component} from 'react'
 import {
     AreaChart,
     Area,
@@ -7,15 +6,12 @@ import {
     YAxis,
     CartesianGrid,
     Tooltip,
-    PieChart,
-    Pie,
     RadarChart,
     PolarGrid,
     PolarAngleAxis,
     PolarRadiusAxis, Radar,
 } from 'recharts'
 import {Grid, Header, Icon, Image, Label, List} from "semantic-ui-react";
-import ComponentFrameClient from "../../../modules/client/ComponentFrameClient";
 
 
 class HomeClient extends Component{

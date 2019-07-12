@@ -16,9 +16,18 @@ export const  clientMenu = {items:[
 
         },
         {
-            'name':'Forms',
+            'name':'Form configuration',
+            'subMenu': true,
             'icon':'clipboard',
-            'action':'/forms'
+            'items' : [{
+                            'name': 'Forms',
+                            'action': '/forms'
+                        },
+                        {
+                            'name': 'Input fields',
+                            'action': '/inputs'
+                        }
+            ]
         },
         {
             'name':'Graphs',

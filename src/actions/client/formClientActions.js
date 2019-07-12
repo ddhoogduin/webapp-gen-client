@@ -11,15 +11,16 @@ export const togglePublishFormList = (selection, value) => {
         'id', form.FORM_LIST_TOGGLE_PUBLISHED_SUCCESS, form.FORM_LIST_TOGGLE_PUBLISHED_FAILED)
 };
 const verifyGetForm = (response) => {
-    if (response.data.success === false) {
+    if (response.status === 200) {
         return {
-            type: form.FORM_ITEM_FAILED
+            type: form.FORM_ITEM_SUCCESS,
+            payload: response.data
         }
     }
     return {
-        type: form.FORM_ITEM_SUCCESS,
-        payload: response.data.item
+        type: form.FORM_ITEM_FAILED
     }
+
 };
 
 export const getForm = (id) => async (dispatch, getState) => {

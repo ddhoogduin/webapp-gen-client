@@ -8,6 +8,7 @@ import {
 
 import {Link} from "react-router-dom";
 import _ from 'lodash'
+import Sortable from 'react-sortablejs';
 
 class OverviewClient extends Component {
 
@@ -36,7 +37,6 @@ class OverviewClient extends Component {
     renderColumnValue = (rowIndex, attribute, format, item) => {
         switch (format) {
             case 'slide':
-                console.log('published'+item[attribute]);
                 return <Checkbox toggle  checked={(item[attribute] === 'True')} onClick={() => this.props.publishItem(item[this.props.pk])}/>;
             case 'row-number':
                 return (rowIndex + 1);
@@ -66,7 +66,12 @@ class OverviewClient extends Component {
         )
     };
     renderTableContent = () => (
-        <Table.Body>
+            <Sortable
+                tag="tbody"
+                onChange={(order, sortable, evt) => {
+                    console.log(order)
+                }}
+            >
             {
                 this.props.data.map(
                     (item, index) => {
@@ -76,14 +81,14 @@ class OverviewClient extends Component {
                             (this.props.searchTerm === '')
                         )
                             return (
-                                <Table.Row key={`${this.props.entity}TableRow-${index}`}>
+                                <Table.Row key={`${this.props.entity}TableRow-${index}`} data-id={item.id}>
                                     {this.renderTableRow(item, index)}
                                 </Table.Row>
                             )
                     }
                 )
             }
-        </Table.Body>
+            </Sortable>
     );
     renderTableActions = () => {
         const buttons = this.props.dataActions;

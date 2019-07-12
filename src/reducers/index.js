@@ -6,7 +6,8 @@ import authenticationUserReducer from './user/authenticationUserReducer'
 import clientReducer from "./client/listClientReducer";
 import activeClientReducer from "./client/activeClientReducer";
 import activeFormClientReducer from "./client/form/activeFormClientReducer";
-import listInputReducer from "./client/input/listInputReducer"
+import listInputReducer from "./client/input/listInputClientReducer"
+import listApiProtocolClientReducer from "./client/api/listApiProtocolClientReducer";
 
 export default combineReducers({
     form: formReducer,
@@ -14,7 +15,8 @@ export default combineReducers({
     authenticationUser: authenticationUserReducer,
     listClient: clientReducer,
     activeClient: activeClientReducer,
+    listApiProtocolClient: listApiProtocolClientReducer,
     listFormClient: listFormClientReducer,
     activeFormClient: activeFormClientReducer,
-    listInput: listInputReducer,
+    listInputClient: listInputReducer,
 });
