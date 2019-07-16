@@ -18,9 +18,9 @@ class DashboardContainer extends Component{
         )
     }
 }
-const mapStateToProps = (state) => {
+const mapStateToProps = ({dashboard}) => {
     return {
-        clients: _.values(state.listClient)
+        clients: _.values(dashboard.clients)
     }
 };
 export default connect(mapStateToProps, {getClients, setActiveClient})(DashboardContainer);

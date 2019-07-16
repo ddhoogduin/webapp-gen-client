@@ -1,11 +1,10 @@
-import {form} from '../../../constants/types'
+import {form} from '../../constants/types'
 
 export default (state='', action) => {
     switch (action.type) {
-        case form.FORM_ITEM_SUCCESS:
+        case form.FORM_LIST_TOGGLE_PUBLISHED_SUCCESS:
+        case form.FORM_LIST_SUCCESS:
             return action.payload;
-        case form.FORM_ITEM_FAILED:
-            return '';
         default:
             return state;
     }

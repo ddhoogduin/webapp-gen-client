@@ -1,4 +1,4 @@
-import {input} from '../../../constants/types'
+import {input} from '../../constants/types'
 import _ from 'lodash'
 
 export default (state=[], action) => {

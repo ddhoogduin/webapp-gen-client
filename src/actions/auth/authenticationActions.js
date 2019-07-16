@@ -5,7 +5,7 @@ const verifyLogin = (response) => {
     if(response.status === 202){
         return {
             type: Authentication.LOGIN_SUCCESS,
-            payload: response.data.id
+            payload: response.data
         }
     }else{
         return {
@@ -14,7 +14,7 @@ const verifyLogin = (response) => {
         }
     }
 };
-export const userLogin = formValues => async (dispatch, getState) => {
-    const response = await SascWebApi.post('/users/login', formValues);
+export const userLogin = formValues => async (dispatch) => {
+    const response = await SascWebApi.post('/users/auth', formValues);
     dispatch(verifyLogin(response));
 };

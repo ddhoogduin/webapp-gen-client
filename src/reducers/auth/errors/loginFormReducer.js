@@ -1,4 +1,4 @@
-import {Authentication} from '../../constants/types'
+import {Authentication} from '../../../constants/types'
 
 export default (state='', action) => {
     switch (action.type) {

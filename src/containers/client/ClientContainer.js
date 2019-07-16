@@ -45,17 +45,17 @@ class ClientContainer extends Component{
                     />
                     <Route path="/:alias/forms" exact
                            render={(props) => this.renderRouteItem(<OverviewFormClientContainer {...props} />,
-                               {name:'Forms', description:'Overview of client forms'}
+                               {name:'Forms', description:'Overview of clientResources forms'}
                            )}
                     />
                     <Route path="/:alias/form/:formId" exact
                            render={(props) => this.renderRouteItem(<DetailFormClientContainer {...props} />,
-                               {name:'Form', description:'Edit a client form'}
+                               {name:'Form', description:'Edit a clientResources form'}
                            )}
                     />
                     <Route path="/:alias/inputs" exact
                            render={(props) => this.renderRouteItem(<OverviewInputClientContainer {...props} />,
-                               {name:'Inputs', description:'Overview of client inputs'}
+                               {name:'Inputs', description:'Overview of clientResources inputs'}
                            )}
                     />
                 </Switch>

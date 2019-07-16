@@ -3,38 +3,26 @@ import {connect} from "react-redux";
 import {Router, Route, Switch} from 'react-router-dom'
 import history from '../history'
 
-import LoginContainer from './login/LoginContainer'
+import LoginContainer from './auth/LoginContainer'
 import App from "../components/App";
 
 import DashboardContainer from "./dashboard/DashboardContainer";
 import ClientContainer from "./client/ClientContainer"
+import {PrivateRoute} from "../components/modules/routes/PrivateRoute";
 
 
 class AppContainer extends Component{
-    validateAuthentication = () =>{
-        if(this.props.authenticationUser !== ''){
-            return(
-                <Router history={history}>
-                    <Switch>
-                        <Route path="/" exact component={DashboardContainer}/>
-                        <Route path="/:clientAlias"  component={ClientContainer}/>
-                    </Switch>
-                </Router>
-                );
-        }
-        return(
-            <LoginContainer/>
-        )
-    };
+
     render(){
         return(<App>
-            {this.validateAuthentication()}
+            <Router history={history}>
+                <Switch>
+                    <Route path={'/login'} exact component={LoginContainer}/>
+                    <PrivateRoute path="/" exact component={DashboardContainer}/>
+                    <PrivateRoute path="/:clientAlias"  component={ClientContainer}/>
+                </Switch>
+            </Router>
         </App>)
     }
 }
-const mapStateToProps = (state) => {
-    return {
-        authenticationUser: state.authenticationUser,
-    }
-};
-export default connect(mapStateToProps)(AppContainer)
+export default connect()(AppContainer)

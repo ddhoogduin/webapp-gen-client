@@ -1,4 +1,4 @@
-import {api_protocol} from '../../../constants/types'
+import {api_protocol} from '../../constants/types'
 
 export default (state={}, action) => {
     switch (action.type) {
