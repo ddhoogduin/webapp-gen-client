@@ -14,7 +14,7 @@ import {
     Menu, Label,
     Sidebar, Header, Divider
 } from 'semantic-ui-react'
-import userOptions from '../../modules/userOptions'
+import UserOptions from '../../modules/userOptions'
 
 import '../../../assets/main.css'
 import {Link} from "react-router-dom";
@@ -27,7 +27,7 @@ class Client extends Component{
                     {item.name}
                 </Menu.Item>
         )
-    }
+    };
     renderSubMenu = (index, item) => {
         return(
             <Menu.Item key={`mainSubMenuItem-${index}`}>
@@ -92,7 +92,11 @@ class Client extends Component{
                         <Input icon='search' placeholder='Search...' />
                     </Menu.Item>
                     <Menu.Item>
-                        {userOptions()}
+                        <UserOptions
+                            firstName={this.props.activeUserDetails['first_name']}
+                            lastName={this.props.activeUserDetails['last_name']}
+                            userLogout={this.props.userLogout}
+                        />
                     </Menu.Item>
                     <Menu.Item>
                         <Label as='a' color={'red'}>

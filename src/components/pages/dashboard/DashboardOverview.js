@@ -1,6 +1,6 @@
 import React, {Component} from 'react'
 import {Container, Grid, Segment, Form, Button, Transition, Icon, Input, Card, Image, Dropdown} from 'semantic-ui-react'
-import userOptions from '../../modules/userOptions'
+import UserOptions from '../../modules/userOptions'
 
 import '../../../assets/main.css'
 import {Link} from "react-router-dom";
@@ -8,8 +8,6 @@ import {Link} from "react-router-dom";
 class DashboardOverview extends Component{
 
     renderPossibleClients(){
-
-
         return this.props.clients.map(
             (client, index) =>{
                 return(
@@ -23,14 +21,7 @@ class DashboardOverview extends Component{
                                 <Card.Description>{client.description}</Card.Description>
                             </Card.Content>
                             <Card.Content extra>
-                                <a>
-                                    <Icon name='user' />
-                                    Moderator: Hodor Hodor
-                                </a>
-                                &nbsp;|&nbsp;
                                 <span className={'pull-right'}>
-                                    <Icon name={'trash'}/>
-                                    <Icon name={'mail'}/>
                                     <Icon name={'world'}/>
                                 </span>
                             </Card.Content>
@@ -45,10 +36,14 @@ class DashboardOverview extends Component{
             <div className='dashboardOverviewSection'>
                     <Grid>
                         <Grid.Row className='frameContainer' textAlign={'center'}>
-                            <Container textAlign={'center'}>
+                            <Container textAlign={'center'} >
                                     <h1>Welcome</h1>
                                   <p>Select on of the <b>clients</b> to edit</p>
-                                {userOptions()}
+                                <UserOptions
+                                    firstName={this.props.activeUserDetails['first_name']}
+                                    lastName={this.props.activeUserDetails['last_name']}
+                                    userLogout={this.props.userLogout}
+                                />
                             </Container>
                         </Grid.Row>
                         <Grid.Row  textAlign={'center'} className={'client-container'}>

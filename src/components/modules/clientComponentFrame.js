@@ -3,13 +3,6 @@ import {Divider, Grid, Icon, Segment, Transition} from "semantic-ui-react";
 
 export default (props) => {
         return (
-            <Transition
-                unmountOnHide={true}
-                animation={"fade up"}
-                duration={{ show:500 }}
-                transitionOnMount={true}
-                key={`client-content-item-${props.name}`}
-            >
             <Grid>
                 <Grid.Row>
                     <Grid.Column width={1}/>
@@ -32,6 +25,5 @@ export default (props) => {
                     </Grid.Column>
                 </Grid.Row>
             </Grid>
-            </Transition>
         )
 }

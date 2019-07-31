@@ -2,18 +2,19 @@ import React from 'react'
 import {Dropdown, Icon} from "semantic-ui-react";
 
 
-export  default () => (
-    <span>
+const UserOptions = (props) =>{
+    return (
+        <span>
         Loged-in as <i>administrator</i> {' '}
-        <Dropdown text={"Dylan Hoogduin"} inline   pointing className='link item'>
+            <Dropdown text={`${props.firstName} ${props.lastName}`} inline   pointing className='link item'>
               <Dropdown.Menu>
                 <Dropdown.Header>Options</Dropdown.Header>
-                <Dropdown.Item><Icon name={'cogs'}/>Settings</Dropdown.Item>
-                <Dropdown.Item><Icon name={'edit'}/>Edit account</Dropdown.Item>
                 <Dropdown.Divider />
-                  <Dropdown.Header><i className={'user-role-menu'}>Admin</i></Dropdown.Header>
-                <Dropdown.Item><Icon name={'log out'}/>Log-out</Dropdown.Item>
+                <Dropdown.Item onClick={() => props.userLogout()}><Icon name={'log out'}/>Log-out</Dropdown.Item>
               </Dropdown.Menu>
             </Dropdown>
       </span>
-);
+    );
+};
+
+export default UserOptions;

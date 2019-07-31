@@ -18,9 +18,9 @@ class LoginContainer extends Component{
         )
     }
 }
-const mapStateToProps = (state) => {
+const mapStateToProps = ({auth}) => {
     return {
-        loginFormErrors: state.loginFormErrors
+        loginFormErrors: auth.loginFormErrors
     }
-}
+};
 export default connect(mapStateToProps, {userLogin})(LoginContainer);

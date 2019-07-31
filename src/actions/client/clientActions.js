@@ -1,7 +1,13 @@
 import SascWebApi from '../../apis/SascWeb'
 import {client} from '../../constants/types'
+import {isNotAuth} from '../auth/authenticationActions'
 
 const verifyGetClients = (response) =>{
+
+    // const unauthorized = isNotAuth(response.status);
+    // if(unauthorized){
+    //     return unauthorized
+    // }
 
     if(response.status === 200){
         return {
@@ -32,8 +38,8 @@ const verifyClientRequest = (response) =>{
 
 export const setActiveClient = (requestedClientAlias) => async (dispatch, getState) =>{
 
-    if(requestedClientAlias !== getState().activeClient.clientAlias){
+    if(requestedClientAlias !== getState().client.activeClient.clientAlias){
         const response = await SascWebApi.get(`/clients/${requestedClientAlias}`);
         dispatch(verifyClientRequest(response));
     }
-}
+};

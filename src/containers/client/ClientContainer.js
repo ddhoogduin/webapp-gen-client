@@ -15,6 +15,8 @@ import {setActiveClient} from '../../actions/client/clientActions'
 import {unsetRedirect} from '../../actions/client/clientManagerActions'
 import ClientComponentFrame from "../../components/modules/clientComponentFrame";
 import OverviewInputClientContainer from "./input/OverviewInputClientContainer";
+import DashboardOverview from "../../components/pages/dashboard/DashboardOverview";
+import {userLogout} from "../../actions/auth/authenticationActions";
 
 class ClientContainer extends Component{
 
@@ -43,14 +45,9 @@ class ClientContainer extends Component{
                                {name:'Home', description:'Client overview'}
                                )}
                     />
-                    <Route path="/:alias/forms" exact
-                           render={(props) => this.renderRouteItem(<OverviewFormClientContainer {...props} />,
-                               {name:'Forms', description:'Overview of clientResources forms'}
-                           )}
-                    />
-                    <Route path="/:alias/form/:formId" exact
+                    <Route path="/:alias/form" exact
                            render={(props) => this.renderRouteItem(<DetailFormClientContainer {...props} />,
-                               {name:'Form', description:'Edit a clientResources form'}
+                               {name:'Form', description:'Edit the form'}
                            )}
                     />
                     <Route path="/:alias/inputs" exact
@@ -77,14 +74,18 @@ class ClientContainer extends Component{
                 clientPath={this.props.location.pathname}
                 unsetRedirect={this.props.unsetRedirect}
                 managerClient={this.props.managerClient}
+                activeUserDetails={this.props.activeUserDetails}
+                userLogout={this.props.userLogout}
+                clients={this.props.clients}
             />
         )
     }
 }
-const mapStateToProps = (state) => {
+const mapStateToProps = ({client, auth}) => {
     return {
-        client: state.activeClient,
-        managerClient: state.managerClient
+        client: client.activeClient,
+        managerClient: client.managerClient,
+        activeUserDetails: auth.authenticationUser.user.payload
     }
 };
-export default connect(mapStateToProps, {setActiveClient, unsetRedirect})(ClientContainer);
+export default connect(mapStateToProps, {setActiveClient, unsetRedirect, userLogout})(ClientContainer);

@@ -25,10 +25,13 @@ class DetailFormClientContainer extends Component {
             }
         ];
     componentDidMount() {
-        this.props.getForm(this.pk_value);
+        if(this.pk_value){
+            this.props.getForm(this.pk_value);
+        }
         this.props.getApiProtocolList()
     }
     render() {
+        console.log('here');
         return (
             <DetailClientContainer
                 entity={this.entity}

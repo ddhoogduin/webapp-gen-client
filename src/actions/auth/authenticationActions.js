@@ -1,20 +1,35 @@
 import SascWebApi from '../../apis/SascWeb'
-import {Authentication} from '../../constants/types'
+import {authentication} from '../../constants/types'
 
 const verifyLogin = (response) => {
-    if(response.status === 202){
+    console.log(response.data.success);
+    if(response.data.success === true){
+        localStorage.setItem('user', JSON.stringify(response.data));
         return {
-            type: Authentication.LOGIN_SUCCESS,
+            type: authentication.LOGIN_SUCCESS,
             payload: response.data
         }
     }else{
         return {
-            type: Authentication.LOGIN_FAILED,
-            payload: Authentication.LOGIN_FAILED
+            type: authentication.LOGIN_FAILED,
+            payload: "Incorrect password or confirmation code entered. Please try again."
         }
     }
 };
 export const userLogin = formValues => async (dispatch) => {
     const response = await SascWebApi.post('/users/auth', formValues);
     dispatch(verifyLogin(response));
+};
+
+export const userLogout = () =>{
+    return{
+        type: authentication.LOGOUT_SUCCESS
+    }
+};
+
+export const isNotAuth  = (status) =>{
+    if(status === 401){
+        return {type:authentication.UNAUTHORIZED}
+    }
+    return false
 };

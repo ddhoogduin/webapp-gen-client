@@ -1,27 +1,66 @@
 export const  clientMenu = {items:[
         {
-            'name':'Home',
-            'icon':'home',
-            'action':''
-        },
-        {
-            'name':'Appearance',
-            'icon':'image',
-            'action':''
-        },
-        {
-            'name': 'Content',
-            'icon': 'font',
-            'action': ''
-
-        },
-        {
-            'name':'Form configuration',
+            'name':'About',
             'subMenu': true,
-            'icon':'clipboard',
-            'items' : [{
-                            'name': 'Forms',
-                            'action': '/forms'
+            'icon':'question circle',
+            'items' : [
+                {
+                'name': 'General',
+                'action': '/form'
+                },
+                {
+                    'name': 'Timeline',
+                    'action': '/inputs'
+                },
+                {
+                    'name': 'Output examples',
+                    'action': '/inputs'
+                }
+            ]
+        },
+        {
+            'name':'How to use',
+            'subMenu': true,
+            'icon':'mouse pointer',
+            'items' : [
+                {
+                    'name': 'General',
+                    'action': '/form'
+                }
+            ]
+        },
+        {
+            'name':'Downloads',
+            'subMenu': true,
+            'icon':'cloud download',
+            'items' : [
+                {
+                    'name': 'General',
+                    'action': '/form'
+                },
+                {
+                    'name': 'Dataset groups',
+                    'action': '/form'
+                },
+                {
+                    'name': 'Datasets',
+                    'action': '/form'
+                }
+            ]
+        }
+        ,
+        {
+            'name':'Tool configuration',
+            'subMenu': true,
+            'icon':'configure',
+            'items' : [
+                        {
+                            'name': 'General',
+                            'action': '/form'
+                        },
+                        {
+                            'name': 'Form',
+                            'action': '/form'
                         },
                         {
                             'name': 'Input fields',
@@ -30,23 +69,34 @@ export const  clientMenu = {items:[
             ]
         },
         {
-            'name':'Graphs',
-            'icon':'area graph',
-            'action':''
+            'name':'FAQ',
+            'subMenu': true,
+            'icon':'talk',
+            'items' : [
+                {
+                    'name': 'General',
+                    'action': '/form'
+                },
+                {
+                    'name': 'FAQs',
+                    'action': '/form'
+                }
+            ]
         },
         {
-            'name':'Validation rules',
-            'icon':'list ol',
-            'action':''
-        },
-        {
-            'name':'Configuration',
-            'icon':'cog',
-            'action':''
-        },
-        {
-            'name':'Statistics',
-            'icon':'chart bar',
-            'action':''
-        }]
+            'name':'Contacts',
+            'subMenu': true,
+            'icon':'users',
+            'items' : [
+                {
+                    'name': 'General',
+                    'action': '/form'
+                },
+                {
+                    'name': 'People',
+                    'action': '/form'
+                }
+            ]
+        }
+    ]
 };

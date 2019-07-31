@@ -1,7 +1,9 @@
-export const Authentication ={
+export const authentication ={
     LOGIN_SUCCESS:'USER_LOGIN_SUCCESS',
-    LOGIN_FAILED :'USER_LOGIN_FAILED'
-}
+    LOGIN_FAILED :'USER_LOGIN_FAILED',
+    LOGOUT_SUCCESS: 'LOGOUT_SUCCESS',
+    UNAUTHORIZED: 'USER_UNAUTHORIZED'
+};
 
 export const client ={
     CLIENT_LIST_SUCCESS:'CLIENT_LIST_SUCCESS',

@@ -24,7 +24,7 @@ const verifyGetForm = (response) => {
 };
 
 export const getForm = (id) => async (dispatch, getState) => {
-    const response = await SascWebApi.get(`/clients/${getState().activeClient.id}/forms/${id}`);
+    const response = await SascWebApi.get(`/clients/${getState().client.activeClient.id}/forms/${id}`);
     dispatch(verifyGetForm(response));
 };
 
@@ -44,7 +44,7 @@ const verifyUploadForm = (response) => {
 };
 
 export const uploadForm = (formValues, id) => async (dispatch, getState) => {
-    const response = await SascWebApi.put(`/form/${getState().activeClient.alias}/${id}`,
+    const response = await SascWebApi.put(`/form/${getState().client.activeClient.alias}/${id}`,
         {formData: formValues, inputData: getState().listInput});
     dispatch(verifyUploadForm(response));
 };

@@ -28,12 +28,12 @@ const verifyGetInputList = (response) =>{
 };
 
 export const getClientFormInputList = (formId) => async (dispatch, getState) =>{
-    const response = await SascWebApi.get(`clients/${getState().activeClient.id}/forms/${formId}/inputs`);
+    const response = await SascWebApi.get(`clients/${getState().client.activeClient.id}/forms/${formId}/inputs`);
     return dispatch(verifyGetInputList(response));
 }
 
 export const getClientInputList = () => async (dispatch, getState) =>{
-    const response = await SascWebApi.get(`clients/${getState().activeClient.id}/inputs`);
+    const response = await SascWebApi.get(`clients/${getState().client.activeClient.id}/inputs`);
     return dispatch(verifyGetInputList(response));
 }
 

@@ -1,10 +1,10 @@
-import {Authentication} from '../../../constants/types'
+import {authentication} from '../../../constants/types'
 
 export default (state='', action) => {
     switch (action.type) {
-        case Authentication.LOGIN_FAILED:
+        case authentication.LOGIN_FAILED:
             return action.payload;
-        case Authentication.LOGIN_SUCCESS:
+        case authentication.LOGIN_SUCCESS:
             return  '';
         default:
             return state

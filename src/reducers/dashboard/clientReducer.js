@@ -4,6 +4,8 @@ export default (state='', action) => {
     switch(action.type) {
         case client.CLIENT_LIST_SUCCESS:
             return action.payload;
+        case client.CLIENT_LIST_FAILED:
+            console.log('failed');
         default:
             return state;
     }
